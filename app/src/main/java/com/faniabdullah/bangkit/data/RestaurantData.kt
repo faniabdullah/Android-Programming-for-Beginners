@@ -5,124 +5,111 @@ import com.faniabdullah.bangkit.model.Restaurant
 
 object RestaurantData {
 
-        private val username = arrayOf(
-                "JakeWharton",
-                "amitshekhariitbhu",
-                "romainguy",
-                "chrisbanes",
-                "tipsy",
-                "ravi8x",
-                "jasoet",
-                "budioktaviyan",
-                "hendisantika",
-                "sidiqpermana"
-        )
-
-        private val avatar = intArrayOf(
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-                R.drawable.img_kangkung,
-        )
-
-        private val company = arrayOf(
-                "Google, Inc.",
-                "MindOrksOpenSource",
-                "Google",
-                "Google working on @android",
-                "Working Group Two",
-                "AndroidHive | Droid5",
-                "gojek-engineering",
-                "KotlinID",
-                "JVMDeveloperID @KotlinID @IDDevOps",
-                "Nusantara Beta Studio"
-        )
-
-        private val repository = intArrayOf(
-                102,
-                37,
-                9,
-                30,
-                56,
-                28,
-                44,
-                110,
-                1064,
-                65
-        )
-
-        private val followers = intArrayOf(
-                56995,
-                5153,
-                7972,
-                14725,
-                788,
-                18628,
-                277,
-                178,
-                428,
-                465
-        )
-
-        private val following = intArrayOf(
-                12,
-                2,
-                0,
-                1,
-                0,
-                3,
-                39,
-                23,
-                61,
-                10
-        )
-
-        private val location = arrayOf(
-                "Pittsburgh, PA, USA",
-                "New Delhi, India",
-                "California",
-                "Sydney, Australia",
-                "Trondheim, Norway",
-                "India",
-                "Kotagede, Yogyakarta, Indonesia",
-                "Jakarta, Indonesia",
-                "Bojongsoang - Bandung Jawa Barat",
-                "Jakarta Indonesia"
-        )
-
         private val name = arrayOf(
-                "Jake Wharton",
-                "Amit Shekhar",
-                "Romain Guy",
-                "Chris Banes",
-                "David",
-                "Ravi Tamada",
-                "Deny Prasetyo",
-                "Budi Oktaviyan",
-                "Hendi Santika",
-                "Sidiq Permana"
+                "Melting Pot",
+                "Kafe Kita",
+                "Bring Your Phone Cafe",
+                "Kafein",
+                "Istana Emas",
+                "Makan mudah",
+                "Drinky Squash",
+                "Ampiran Kota",
+                "Gigitan Cepat",
+                "Tempat Siang Hari",
+                "Fairy Cafe",
+                "Rumah Senja",
+                "Saya Suka",
+                "Hub Grubber",
+                "Kafe Cemara",
+                "Manis Asam Kafe",
+                "Run The Gun",
+                "Bobby",
+                "Pangsit Express",
+                "Gigitan Makro",
         )
+
+        private val pictureId = intArrayOf(
+                R.drawable.melting_pot,
+                R.drawable.kafe_kita,
+                R.drawable.bring_your_phone,
+                R.drawable.kafein,
+                R.drawable.istana_emas,
+                R.drawable.makan_mudah,
+                R.drawable.drinky_squash,
+                R.drawable.ampiran_kota,
+                R.drawable.gigitan_cepat,
+                R.drawable.tempat_siang_hari,
+                R.drawable.fairy_cafe,
+                R.drawable.rumah_senja,
+                R.drawable.saya_suka,
+                R.drawable.hub_grubber,
+                R.drawable.kafe_cemara,
+                R.drawable.manis_asam_kafe,
+                R.drawable.runthegun,
+                R.drawable.bobby,
+                R.drawable.pangsit_express,
+                R.drawable.gigitan_makro,
+        )
+
+        private val city = arrayOf(
+                "Medan",
+                "Gorontalo",
+                "Surabaya",
+                "Aceh",
+                "Balikpapan",
+                "Medan",
+                "Surabaya",
+                "Balikpapan",
+                "Bali",
+                "Surabaya",
+                "Surabaya",
+                "Bandung",
+                "Bandung",
+                "Balikpapan",
+                "Ternate",
+                "Malang",
+                "Aceh",
+                "Ternate",
+                "Surabaya",
+                "Surabaya",
+        )
+
+        private val rating = doubleArrayOf(
+                4.2,
+                4.0,
+                4.2,
+                4.6,
+                4.5,
+                3.7,
+                3.9,
+                4.1,
+                4.0,
+                4.4,
+                5.0,
+                3.9,
+                4.3,
+                3.8,
+                3.6,
+                4.6,
+                3.7,
+                4.7,
+                4.8,
+                4.9,
+        )
+
+
 
         val listData: ArrayList<Restaurant>
             get() {
                 val list = arrayListOf<Restaurant>()
                 for (position in name.indices) {
-                    val user = Restaurant()
-                    user.name = name[position]
-                    user.username = username[position]
-                    user.avatar = avatar[position]
-                    user.company = company[position]
-                    user.location = location[position]
-                    user.follower = followers[position]
-                    user.following  = following[position]
-                    user.repository  = repository[position]
-                    list.add(user)
+                    val restaurant = Restaurant()
+                    restaurant.name = name[position]
+
+                    restaurant.city = city[position]
+                    restaurant.image = pictureId[position]
+                    restaurant.rating = rating[position]
+                    list.add(restaurant)
                 }
                 return list
             }
