@@ -14,12 +14,18 @@ import com.bumptech.glide.request.RequestOptions
 import com.faniabdullah.bangkit.R
 import com.faniabdullah.bangkit.model.Restaurant
 
-class RestaurantAdapter(private val listRestaurant: ArrayList<Restaurant>): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
+    }
+
+    fun filter(listRestaurantFiltered: ArrayList<Restaurant>){
+        listRestaurant = ArrayList();
+        listRestaurant.addAll(listRestaurantFiltered)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
