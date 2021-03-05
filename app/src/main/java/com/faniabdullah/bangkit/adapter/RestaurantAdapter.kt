@@ -3,9 +3,11 @@ package com.faniabdullah.bangkit.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -13,7 +15,12 @@ import com.faniabdullah.bangkit.R
 import com.faniabdullah.bangkit.model.Restaurant
 
 class RestaurantAdapter(private val listRestaurant: ArrayList<Restaurant>): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+    private lateinit var onItemClickCallback: OnItemClickCallback
 
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_cardview_hero, parent, false)
@@ -29,7 +36,8 @@ class RestaurantAdapter(private val listRestaurant: ArrayList<Restaurant>): Recy
         holder.tvName.text = restaurantData.name
         holder.tvRating.text = restaurantData.rating.toString()
         holder.tvLocation.text = restaurantData.city
-        holder.itemView.setOnClickListener { Toast.makeText(holder.itemView.context, "Kamu memilih " + listRestaurant[holder.adapterPosition].name, Toast.LENGTH_SHORT).show() }
+        holder.layout_restaurant.setOnClickListener { onItemClickCallback.onItemClicked(listRestaurant[holder.adapterPosition]) }
+        holder.imageButtonBookmark.setOnClickListener{  Toast.makeText(holder.itemView.context,"Bookmarked "+restaurantData.name,Toast.LENGTH_SHORT).show();}
     }
 
     override fun getItemCount(): Int {
@@ -41,6 +49,13 @@ class RestaurantAdapter(private val listRestaurant: ArrayList<Restaurant>): Recy
         var tvName: TextView = itemView.findViewById(R.id.tv_restaurant_name)
         var tvLocation: TextView = itemView.findViewById(R.id.tv_location_restaurant)
         var tvRating: TextView = itemView.findViewById(R.id.tv_rating_restaurant)
-
+        var layout_restaurant : ConstraintLayout = itemView.findViewById(R.id.layout_restaurant)
+        var imageButtonBookmark : ImageButton = itemView.findViewById(R.id.imageButtonBookmark)
     }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data: Restaurant)
+    }
+
+
 }

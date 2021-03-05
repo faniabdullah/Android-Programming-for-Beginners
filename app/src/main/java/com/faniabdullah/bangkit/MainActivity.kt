@@ -1,6 +1,7 @@
 package com.faniabdullah.bangkit
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,16 @@ class MainActivity : AppCompatActivity() {
         rvListRestaurant.layoutManager = LinearLayoutManager(this)
         val listRestaurantAdapter = RestaurantAdapter(list)
         rvListRestaurant.adapter = listRestaurantAdapter
+
+        listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: Restaurant) {
+                showSelectedRestaurant(data)
+            }
+        })
+    }
+
+    private fun showSelectedRestaurant(data: Restaurant) {
+        Toast.makeText(this,"kamu memilih "+data.name,Toast.LENGTH_SHORT).show();
     }
 
 }
