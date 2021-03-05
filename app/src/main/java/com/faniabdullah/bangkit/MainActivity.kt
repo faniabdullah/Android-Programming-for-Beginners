@@ -27,16 +27,12 @@ class MainActivity : AppCompatActivity() {
         edtSearchRestaurant =findViewById(R.id.edt_search_restaurant)
         list.addAll(RestaurantData.listData)
         showListRestaurant()
-        giveEventSearchRestaurant()
-    }
-
-    private fun giveEventSearchRestaurant() {
     }
 
     private fun showListRestaurant() {
         rvListRestaurant.layoutManager = LinearLayoutManager(this)
 
-        val listRestaurantAdapter = RestaurantAdapter(list)
+        val listRestaurantAdapter = RestaurantAdapter(list,this)
         rvListRestaurant.adapter = listRestaurantAdapter
 
         listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback {
@@ -47,13 +43,9 @@ class MainActivity : AppCompatActivity() {
 
         edtSearchRestaurant.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.e("before", "before =" + s)
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.e("hkkk", "onGoing = " + s)
             }
-
             override fun afterTextChanged(s: Editable?) {
                 val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
                 for (data in RestaurantData.listData) {
@@ -64,7 +56,6 @@ class MainActivity : AppCompatActivity() {
                 }
                     listRestaurantAdapter.filter(dataRestaurantFiltered)
             }
-
         })
     }
 

@@ -105,7 +105,6 @@ object RestaurantData {
                 for (position in name.indices) {
                     val restaurant = Restaurant()
                     restaurant.name = name[position]
-
                     restaurant.city = city[position]
                     restaurant.image = pictureId[position]
                     restaurant.rating = rating[position]

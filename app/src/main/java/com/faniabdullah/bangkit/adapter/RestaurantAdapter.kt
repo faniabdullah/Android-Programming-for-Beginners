@@ -1,20 +1,22 @@
 package com.faniabdullah.bangkit.adapter
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.faniabdullah.bangkit.R
+import com.faniabdullah.bangkit.data.DatabaseHelper
 import com.faniabdullah.bangkit.model.Restaurant
 
-class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant> , private val context: Context): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
 
@@ -43,8 +45,10 @@ class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>): Recy
         holder.tvRating.text = restaurantData.rating.toString()
         holder.tvLocation.text = restaurantData.city
         holder.layout_restaurant.setOnClickListener { onItemClickCallback.onItemClicked(listRestaurant[holder.adapterPosition]) }
-        holder.imageButtonBookmark.setOnClickListener{  Toast.makeText(holder.itemView.context,"Bookmarked "+restaurantData.name,Toast.LENGTH_SHORT).show();}
+        holder.imageButtonBookmark.setOnClickListener{ setEvenBookmarked(restaurantData)}
     }
+
+
 
     override fun getItemCount(): Int {
         return listRestaurant.size
@@ -61,6 +65,18 @@ class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>): Recy
 
     interface OnItemClickCallback {
         fun onItemClicked(data: Restaurant)
+    }
+
+    private fun setEvenBookmarked(data: Restaurant) {
+       var dbHelper = DatabaseHelper(context)
+        dbHelper.insertData("${data.name}")
+        val res = dbHelper.allData
+        val buffer = StringBuffer()
+        while (res.moveToNext()) {
+            buffer.append("ID :" + res.getString(0) + "\n")
+            buffer.append("NAME :" + res.getString(1) + "\n")
+        }
+        Log.e("tag-","all data "+buffer.toString())
     }
 
 
