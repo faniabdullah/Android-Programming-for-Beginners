@@ -39,9 +39,9 @@ class DatabaseHelper(context: Context) :
         return db.delete(TABLE_NAME,"NAME = ?", arrayOf(name))
     }
 
-    fun isExistsData (id : String): Boolean {
+    fun isExistsData (name : String): Boolean {
         val db = this.writableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME where $COL_1 = '$id' ", null)
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME where $COL_2= '$name' ", null)
         if(cursor.getCount() <= 0){
             cursor.close();
             return false;

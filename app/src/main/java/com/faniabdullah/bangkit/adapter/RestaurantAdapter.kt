@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -45,10 +46,10 @@ class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant> , priv
         holder.tvRating.text = restaurantData.rating.toString()
         holder.tvLocation.text = restaurantData.city
         holder.layout_restaurant.setOnClickListener { onItemClickCallback.onItemClicked(listRestaurant[holder.adapterPosition]) }
-        holder.imageButtonBookmark.setOnClickListener{ setEvenBookmarked(restaurantData)}
+        holder.imageButtonBookmark.setOnClickListener{ setEvenBookmarked(holder,restaurantData)}
+
+        setRenderButton(holder , restaurantData)
     }
-
-
 
     override fun getItemCount(): Int {
         return listRestaurant.size
@@ -67,16 +68,31 @@ class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant> , priv
         fun onItemClicked(data: Restaurant)
     }
 
-    private fun setEvenBookmarked(data: Restaurant) {
-       var dbHelper = DatabaseHelper(context)
-        dbHelper.insertData("${data.name}")
-        val res = dbHelper.allData
-        val buffer = StringBuffer()
-        while (res.moveToNext()) {
-            buffer.append("ID :" + res.getString(0) + "\n")
-            buffer.append("NAME :" + res.getString(1) + "\n")
+
+    private fun setRenderButton(restaurantViewHolder: RestaurantViewHolder, restaurantData: Restaurant) {
+        val dbHelper = DatabaseHelper(context)
+        val res = dbHelper.isExistsData(restaurantData.name.toString())
+        if (res){
+            restaurantViewHolder.imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_24)
+        }else{
+            restaurantViewHolder.imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24)
         }
-        Log.e("tag-","all data "+buffer.toString())
+    }
+
+    private fun setEvenBookmarked(restaurantViewHolder: RestaurantViewHolder ,restaurantData: Restaurant) {
+        val dbHelper = DatabaseHelper(context)
+        val status = dbHelper.isExistsData(restaurantData.name.toString())
+        var state : String?
+        if (!status){
+            dbHelper.insertData("${restaurantData.name}")
+            restaurantViewHolder.imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_24)
+            state = " Has been added to bookmark"
+        }else{
+            dbHelper.deleteData("${restaurantData.name}")
+            restaurantViewHolder.imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24)
+            state = " Has been removed in bookmark"
+        }
+        Toast.makeText(context, "" + restaurantData.name + state, Toast.LENGTH_SHORT).show();
     }
 
 
