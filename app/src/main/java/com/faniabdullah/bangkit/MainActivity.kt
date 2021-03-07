@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +63,34 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSelectedRestaurant(data: Restaurant) {
         Toast.makeText(this, "kamu memilih " + data.name, Toast.LENGTH_SHORT).show();
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.my_navigation_items, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        setMode(item.itemId)
+        return super.onOptionsItemSelected(item)
+    }
+
+
+
+    private fun setMode(selectedMode: Int) {
+        when (selectedMode) {
+            R.id.action_list -> {
+
+
+            }
+            R.id.action_grid -> {
+
+            }
+            R.id.action_cardview -> {
+
+            }
+        }
     }
 
 }
