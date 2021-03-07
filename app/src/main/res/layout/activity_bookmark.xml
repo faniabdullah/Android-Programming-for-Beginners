@@ -28,8 +28,8 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="restaurant_Favorite"
-                android:textSize="48sp" />
+                android:text="@string/restaurant_favorite"
+                android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_list_restaurant"
