@@ -11,4 +11,7 @@
     <string name="menu">Menu</string>
     <string name="fani_abdullah">Fani Abdullah</string>
     <string name="email_dicoding">tugasfani@gmail.com</string>
+    <string name="home">Home</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="profile">Profile</string>
 </resources>
