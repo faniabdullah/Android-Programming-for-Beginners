@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                tools:text="Restaurant Suka Rasa"
+                tools:text="Restaurant suka suka"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toStartOf="@+id/icon_bookmark_restaurant"
@@ -114,7 +114,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/restaurant_name"
                 app:layout_constraintTop_toBottomOf="@+id/rating_restaurant"
-                tools:text="Restaurant Suka Risa adalah " />
+                tools:text="Restaurant Suka Rasa adalah " />
 
             <TextView
                 android:id="@+id/textView5"
