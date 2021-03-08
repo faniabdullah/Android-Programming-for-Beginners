@@ -24,21 +24,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/direstaurant"
-                android:textSize="48sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:endIconMode="clear_text"
-                app:boxStrokeColor ="?attr/colorOnSurface"
-                app:boxStrokeWidth="1dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
                 app:startIconDrawable="@drawable/ic_baseline_search_24">
 
                 <com.google.android.material.textfield.TextInputEditText
