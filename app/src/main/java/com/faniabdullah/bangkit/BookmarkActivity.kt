@@ -15,7 +15,6 @@ import kotlin.collections.ArrayList
 
 class BookmarkActivity : AppCompatActivity() {
     private lateinit var rvListRestaurant: RecyclerView
-    private var listRestaurant: ArrayList<Restaurant> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bookmark)
@@ -26,10 +25,8 @@ class BookmarkActivity : AppCompatActivity() {
 
     private fun renderBookmarked(data: ArrayList<Restaurant>) {
         rvListRestaurant.layoutManager = LinearLayoutManager(this)
-
         val listRestaurantAdapter = RestaurantAdapter(data,this)
         rvListRestaurant.adapter = listRestaurantAdapter
-
         listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Restaurant) {
                 showSelectedRestaurant(data)
@@ -43,14 +40,12 @@ class BookmarkActivity : AppCompatActivity() {
         val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
         for (data in RestaurantData.listData) {
             val restaurantName: String = data.name.toString().toLowerCase()
-
             res.moveToFirst()
             do
             {
                 if (restaurantName.contains(res.getString(1).toLowerCase())) {
                     dataRestaurantFiltered.add(data)
                 }
-
             }
             while (res.moveToNext())
         }
@@ -62,7 +57,5 @@ class BookmarkActivity : AppCompatActivity() {
     private fun showSelectedRestaurant(data: Restaurant) {
         Toast.makeText(this, "kamu memilih " + data.name, Toast.LENGTH_SHORT).show();
     }
-
-
 }
 

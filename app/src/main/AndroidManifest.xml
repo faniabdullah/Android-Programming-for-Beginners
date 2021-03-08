@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AndroidProgrammingforBeginner">
         <activity android:name=".DetailRestaurantActivity"></activity>
         <activity android:name=".BookmarkActivity" />
-        <activity android:name=".MyProfile" />
+        <activity android:name=".MyProfileActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,9 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,8 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvListRestaurant: RecyclerView
     private var list: ArrayList<Restaurant> = arrayListOf()
     private lateinit var edtSearchRestaurant : TextInputEditText
-
-    private lateinit var navigationMenu: BottomNavigationMenu
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,8 +58,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun showListRestaurant() {
         rvListRestaurant.layoutManager = LinearLayoutManager(this)
 
@@ -82,11 +75,11 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
-            override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(seachValue: Editable?) {
                 val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
                 for (data in RestaurantData.listData) {
-                    val warteg: String = data.name.toString().toLowerCase()
-                    if (warteg.contains(s.toString().toLowerCase())) {
+                    val restaurant: String = data.name.toString().toLowerCase()
+                    if (restaurant.contains(seachValue.toString().toLowerCase())) {
                         dataRestaurantFiltered.add(data)
                     }
                 }
