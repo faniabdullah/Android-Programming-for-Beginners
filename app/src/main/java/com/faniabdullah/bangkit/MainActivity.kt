@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.faniabdullah.bangkit.adapter.RestaurantAdapter
 import com.faniabdullah.bangkit.data.RestaurantData
 import com.faniabdullah.bangkit.model.Restaurant
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
 
@@ -45,12 +44,9 @@ class MainActivity : AppCompatActivity() {
                     startActivity ( moveIntent )
                     true
                 }
-                R.id.action_home -> {
-
-                    true
-                }
                 R.id.action_profile -> {
-                    Toast.makeText(this, "Profile selected", Toast.LENGTH_SHORT).show()
+                    val moveIntent = Intent ( this@MainActivity , MyProfileActivity :: class.java )
+                    startActivity ( moveIntent )
                     true
                 }
                 else -> true
@@ -66,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback {
             override fun onItemClicked(data: Restaurant) {
-                showSelectedRestaurant(data)
+                showDetailRestaurant(data)
             }
         })
 
@@ -88,11 +84,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun showSelectedRestaurant(data: Restaurant) {
-        Toast.makeText(this, "kamu memilih " + data.name, Toast.LENGTH_SHORT).show();
+    private fun showDetailRestaurant(data: Restaurant) {
+        val intentDetail = Intent(this@MainActivity, DetailRestaurantActivity::class.java)
+        intentDetail.putExtra(DetailRestaurantActivity.DETAIL_USER, data)
+        startActivity(intentDetail)
     }
-
-
 }
 
 

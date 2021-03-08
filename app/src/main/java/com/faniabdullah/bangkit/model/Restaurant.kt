@@ -6,6 +6,9 @@ import kotlinx.parcelize.Parcelize
 data class Restaurant(
 
         var name: String? = "",
+        var description: String? = "",
+        var menus: String? = "",
+
         var image: Int? = 0,
         var city : String? = "",
         var rating : Double? = 0.0,

@@ -1,5 +1,6 @@
 package com.faniabdullah.bangkit
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.faniabdullah.bangkit.adapter.RestaurantAdapter
 import com.faniabdullah.bangkit.data.DatabaseHelper
 import com.faniabdullah.bangkit.data.RestaurantData
 import com.faniabdullah.bangkit.model.Restaurant
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -21,6 +23,7 @@ class BookmarkActivity : AppCompatActivity() {
         rvListRestaurant = findViewById(R.id.rv_list_restaurant)
         val data = getfilteredRestaurantFromSqlLite()
         renderBookmarked(data)
+        setNavigation()
     }
 
     private fun renderBookmarked(data: ArrayList<Restaurant>) {
@@ -56,6 +59,25 @@ class BookmarkActivity : AppCompatActivity() {
 
     private fun showSelectedRestaurant(data: Restaurant) {
         Toast.makeText(this, "kamu memilih " + data.name, Toast.LENGTH_SHORT).show();
+    }
+
+    private fun setNavigation() {
+        val navView: BottomNavigationView = findViewById(R.id.navigation)
+        navView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.action_home -> {
+                    val moveIntent = Intent ( this@BookmarkActivity , MainActivity :: class.java )
+                    startActivity ( moveIntent )
+                    true
+                }
+                R.id.action_profile -> {
+                    val moveIntent = Intent ( this@BookmarkActivity , MyProfileActivity :: class.java )
+                    startActivity ( moveIntent )
+                    true
+                }
+                else -> true
+            }
+        }
     }
 }
 

@@ -5,4 +5,8 @@
     <string name="share">Share</string>
     <string name="direstaurant">direstaurant</string>
     <string name="restaurant_favorite">Bookmark Restaurant </string>
+    <string name="icon_start">icon_start</string>
+    <string name="icon_location">icon_location</string>
+    <string name="image_restaurant">image_restaurant</string>
+    <string name="menu">Menu</string>
 </resources>
