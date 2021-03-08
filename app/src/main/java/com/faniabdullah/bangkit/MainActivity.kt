@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faniabdullah.bangkit.adapter.RestaurantAdapter
 import com.faniabdullah.bangkit.data.RestaurantData
+import com.faniabdullah.bangkit.fragment.FragmentBookmark
+import com.faniabdullah.bangkit.fragment.FragmentHome
+import com.faniabdullah.bangkit.fragment.FragmentProfile
 import com.faniabdullah.bangkit.model.Restaurant
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.textfield.TextInputEditText
@@ -23,10 +26,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initComponent()
-        list.addAll(RestaurantData.listData)
-        showListRestaurant()
+        loadFragment(FragmentHome())
+
         setNavigation()
+    }
+
+    private fun loadFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     private fun initComponent() {
@@ -40,13 +49,16 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_bookmarked -> {
-                    val moveIntent = Intent ( this@MainActivity , BookmarkActivity :: class.java )
-                    startActivity ( moveIntent )
+
+                    loadFragment(FragmentBookmark())
+                    true
+                }
+                R.id.action_home -> {
+                    loadFragment(FragmentHome())
                     true
                 }
                 R.id.action_profile -> {
-                    val moveIntent = Intent ( this@MainActivity , MyProfileActivity :: class.java )
-                    startActivity ( moveIntent )
+                    loadFragment(FragmentProfile())
                     true
                 }
                 else -> true

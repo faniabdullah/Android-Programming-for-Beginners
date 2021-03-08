@@ -1,7 +1,6 @@
 package com.faniabdullah.bangkit.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,7 @@ import com.faniabdullah.bangkit.R
 import com.faniabdullah.bangkit.data.DatabaseHelper
 import com.faniabdullah.bangkit.model.Restaurant
 
-class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant> , private val context: Context): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
+class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>, private val context: Context): RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
 

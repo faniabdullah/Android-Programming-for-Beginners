@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.faniabdullah.bangkit.model.Restaurant
 
 class DatabaseHelper(context: Context) :
         SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
@@ -56,6 +57,24 @@ class DatabaseHelper(context: Context) :
             val res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null)
             return res
         }
+
+    fun getRestaurantFiltered(): ArrayList<Restaurant> {
+            val res = this.allData
+            val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
+            for (data in RestaurantData.listData) {
+                val restaurantName: String = data.name.toString().toLowerCase()
+                res.moveToFirst()
+                do
+                {
+                    if (restaurantName.contains(res.getString(1).toLowerCase())) {
+                        dataRestaurantFiltered.add(data)
+                    }
+
+                } while (res.moveToNext())
+            }
+
+            return dataRestaurantFiltered
+    }
 
     companion object {
         val DATABASE_NAME = "stars.db"
