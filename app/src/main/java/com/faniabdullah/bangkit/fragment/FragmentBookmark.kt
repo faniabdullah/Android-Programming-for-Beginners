@@ -28,7 +28,6 @@ class FragmentBookmark : Fragment() {
 
         val dbHelper = DatabaseHelper(activity)
         val restaurant = dbHelper.getRestaurantFiltered()
-        Log.e("msg","msg sdone "+restaurant)
         renderBookmarked(restaurant,activity,view)
 
         return view

@@ -29,6 +29,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="20dp"
-                tools:listitem="@layout/item_cardview_hero"
+                tools:listitem="@layout/item_swipeview_restaurant"
                 android:padding="5dp" />
 </LinearLayout>

@@ -36,8 +36,21 @@ class FragmentHome : Fragment() {
         val listRestaurantAdapter = RestaurantAdapter(list,activity)
         recyclerView.adapter = listRestaurantAdapter
 
+        listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: Restaurant) {
+                showDetailRestaurant(activity , data)
+            }
+        })
+
+        giveEventSearchRestaurant(view , listRestaurantAdapter)
+
+        return view
+    }
+
+    private fun giveEventSearchRestaurant(view: View,adapter: RestaurantAdapter){
 
         edtSearchRestaurant =view.findViewById(R.id.edt_search_restaurant)
+
         edtSearchRestaurant.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -51,17 +64,9 @@ class FragmentHome : Fragment() {
                         dataRestaurantFiltered.add(data)
                     }
                 }
-                listRestaurantAdapter.filter(dataRestaurantFiltered)
+                adapter.filter(dataRestaurantFiltered)
             }
         })
-
-        listRestaurantAdapter.setOnItemClickCallback(object : RestaurantAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: Restaurant) {
-                showDetailRestaurant(activity , data)
-            }
-        })
-
-        return view
     }
 
 
