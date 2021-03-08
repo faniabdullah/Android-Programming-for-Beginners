@@ -14,4 +14,5 @@
     <string name="home">Home</string>
     <string name="bookmark">Bookmark</string>
     <string name="profile">Profile</string>
+    <string name="search_restaurant">Search Restaurant</string>
 </resources>

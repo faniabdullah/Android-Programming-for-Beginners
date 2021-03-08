@@ -48,7 +48,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:hint="Search Restaurant" />
+                    android:hint="@string/search_restaurant" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView
