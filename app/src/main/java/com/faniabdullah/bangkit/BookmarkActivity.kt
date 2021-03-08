@@ -2,6 +2,7 @@ package com.faniabdullah.bangkit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,14 +43,19 @@ class BookmarkActivity : AppCompatActivity() {
         val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
         for (data in RestaurantData.listData) {
             val restaurantName: String = data.name.toString().toLowerCase()
-            while (res.moveToNext()) {
-                if (restaurantName.contains(res.getString(1).toLowerCase(Locale.ROOT))) {
+
+            res.moveToFirst()
+            do
+            {
+                if (restaurantName.contains(res.getString(1).toLowerCase())) {
                     dataRestaurantFiltered.add(data)
                 }
+
             }
+            while (res.moveToNext())
         }
 
-        return dataRestaurantFiltered;
+        return dataRestaurantFiltered
     }
 
 
