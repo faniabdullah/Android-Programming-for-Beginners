@@ -81,7 +81,7 @@ class RestaurantAdapter(private var listRestaurant: ArrayList<Restaurant>, priva
     private fun setEvenBookmarked(restaurantViewHolder: RestaurantViewHolder ,restaurantData: Restaurant) {
         val dbHelper = DatabaseHelper(context)
         val status = dbHelper.isExistsData(restaurantData.name.toString())
-        var state : String?
+        val state : String?
         if (!status){
             dbHelper.insertData("${restaurantData.name}")
             restaurantViewHolder.imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_24)

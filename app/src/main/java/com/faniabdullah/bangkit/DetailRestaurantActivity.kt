@@ -73,7 +73,7 @@ class DetailRestaurantActivity : AppCompatActivity() {
     private fun setEvenBookmarked(restaurantData: Restaurant?) {
         val dbHelper = DatabaseHelper(this)
         val status = dbHelper.isExistsData(restaurantData?.name.toString())
-        var state : String?
+        val state : String?
         if (!status){
             dbHelper.insertData("${restaurantData?.name}")
             imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_24)
@@ -83,17 +83,13 @@ class DetailRestaurantActivity : AppCompatActivity() {
             imageButtonBookmark.setBackgroundResource(R.drawable.ic_baseline_bookmark_border_24)
             state = " Has been removed in bookmark"
         }
-        Toast.makeText(this, "" + restaurantData?.name + state, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + restaurantData?.name + state, Toast.LENGTH_SHORT).show()
     }
 
 
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
-    }
-
-    override fun onBackPressed() {
-        return super.onBackPressed()
     }
 
 }

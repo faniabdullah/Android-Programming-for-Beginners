@@ -28,7 +28,7 @@ class FragmentHome : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_home, container,
                 false)
 
-        var list: ArrayList<Restaurant> = arrayListOf()
+        val list: ArrayList<Restaurant> = arrayListOf()
         list.addAll(RestaurantData.listData)
         val activity = activity as Context
         val recyclerView = view.findViewById<RecyclerView>(R.id.rv_list_restaurant)

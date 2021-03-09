@@ -1,11 +1,10 @@
 package com.faniabdullah.bangkit.data
 
-import android.content.Context
-import android.database.sqlite.SQLiteOpenHelper
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.util.Log
+import android.database.sqlite.SQLiteOpenHelper
 import com.faniabdullah.bangkit.model.Restaurant
 
 class DatabaseHelper(context: Context) :
@@ -45,10 +44,10 @@ class DatabaseHelper(context: Context) :
         val db = this.writableDatabase
         val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME where $COL_2= '$name' ", null)
         if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
+            cursor.close()
+            return false
         }
-        cursor.close();
+        cursor.close()
         return true;
     }
 

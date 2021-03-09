@@ -29,15 +29,17 @@ class MainActivity : AppCompatActivity() {
         navView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_bookmarked -> {
-
+                    supportActionBar?.title = "Bookmark"
                     loadFragment(FragmentBookmark())
                     true
                 }
                 R.id.action_home -> {
+                    supportActionBar?.title = "direstaurant"
                     loadFragment(FragmentHome())
                     true
                 }
                 R.id.action_profile -> {
+                    supportActionBar?.title = "Profile"
                     loadFragment(FragmentProfile())
                     true
                 }
