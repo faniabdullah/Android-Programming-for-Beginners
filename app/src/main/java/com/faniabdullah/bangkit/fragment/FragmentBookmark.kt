@@ -21,14 +21,20 @@ class FragmentBookmark : Fragment() {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_bookmark, container,
-                false)
 
         val activity = activity as Context
 
         val dbHelper = DatabaseHelper(activity)
         val restaurant = dbHelper.getRestaurantFiltered()
-        renderBookmarked(restaurant,activity,view)
+        var view: View = inflater.inflate(R.layout.fragment_bookmark, container,
+                false)
+
+        if (restaurant.size >= 1){
+            renderBookmarked(restaurant,activity,view)
+        }else{
+            view = inflater.inflate(R.layout.fragment_no_data, container,
+                    false)
+        }
 
         return view
     }

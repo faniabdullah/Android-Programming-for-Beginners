@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.util.Log
 import com.faniabdullah.bangkit.model.Restaurant
 
 class DatabaseHelper(context: Context) :
@@ -62,6 +63,9 @@ class DatabaseHelper(context: Context) :
             val res = this.allData
             val dataRestaurantFiltered: ArrayList<Restaurant> = arrayListOf()
             for (data in RestaurantData.listData) {
+                if (res.count < 1){
+                    break
+                }
                 val restaurantName: String = data.name.toString().toLowerCase()
                 res.moveToFirst()
                 do

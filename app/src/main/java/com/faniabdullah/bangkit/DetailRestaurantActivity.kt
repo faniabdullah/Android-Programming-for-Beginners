@@ -27,10 +27,13 @@ class DetailRestaurantActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_restaurant)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         initialComponent()
         val restaurant = intent.getParcelableExtra(DETAIL_USER) as Restaurant?
+        supportActionBar?.title = restaurant?.name
         renderDetailRestaurant(restaurant)
-
     }
 
     private fun initialComponent() {
@@ -55,8 +58,6 @@ class DetailRestaurantActivity : AppCompatActivity() {
         tv_menu_restaurant.text = restaurant?.menus
         setRenderButton(restaurant)
     }
-
-
 
     private fun setRenderButton( restaurantData: Restaurant?) {
         val dbHelper = DatabaseHelper(this)
@@ -83,6 +84,16 @@ class DetailRestaurantActivity : AppCompatActivity() {
             state = " Has been removed in bookmark"
         }
         Toast.makeText(this, "" + restaurantData?.name + state, Toast.LENGTH_SHORT).show();
+    }
+
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onBackPressed() {
+        return super.onBackPressed()
     }
 
 }
