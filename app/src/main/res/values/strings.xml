@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">direstaurant</string>
-    <string name="with_cardview">with CardView</string>
     <string name="favorite">Favorite</string>
     <string name="share">Share</string>
     <string name="direstaurant">direstaurant</string>
